@@ -4,6 +4,7 @@ terraform {
     key          = "dev/terraform.tfstate"
     region       = "us-east-1"
     encrypt      = true
-    use_lockfile = true # Enables native S3 locking (Terraform 1.10+)
+    #use_lockfile = true # Enables native S3 locking (Terraform 1.10+)
+    dynamodb_table = "terraform_statefilelock" # Required for legacy locking
   }
 }
