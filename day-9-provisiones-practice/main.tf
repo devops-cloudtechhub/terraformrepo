@@ -7,6 +7,7 @@ resource "aws_vpc" "my-vpc" {
 resource "aws_subnet" "vpc-sub" {
     vpc_id = aws_vpc.my-vpc.id
     cidr_block = "10.0.1.0/24"
+    availability_zone = "us-west-2a"
     map_public_ip_on_launch = true
     tags = {
         Name = "test-sub"
@@ -60,8 +61,8 @@ resource "aws_security_group" "mysg" {
     }
 }
 resource "aws_instance" "ec2" {
-    ami = "ami-0829b74b2a8c619b7"
-    instance_type = "t3.micro"
+    ami = "ami-0e30f57315735eae4"
+    instance_type = "t2.medium"
     subnet_id = aws_subnet.vpc-sub.id
     vpc_security_group_ids = [aws_security_group.mysg.id]
     key_name = aws_key_pair.my-key.key_name
